@@ -1,10 +1,4 @@
-<%= react_component('EventCard',
-    props: {event: @event.to_json,
-     venue: @event.venue.to_json,
-     user_signed_in: !current_user.nil?,
-     is_favourited: Event.favourited?(current_user, @event.try(:id)) 
-  })
-%>
+<%= react_component('EventCard', event: @event.to_json, venue: @event.venue.to_json, user_signed_in: !current_user.nil?) %>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
               events_path, :class => 'btn btn-default' if current_user.try(:admin?) %>

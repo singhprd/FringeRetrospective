@@ -1,12 +1,6 @@
 <% @events.each do |event| %>
 
-<%= react_component('EventCard',
-props: {event: event.to_json,
- venue: event.venue.to_json,
- user_signed_in: !current_user.nil?,
- is_favourited: Event.favourited?(current_user, event.try(:id)) 
-})
- %>
+<%= react_component('EventCard', event: event.to_json, venue: event.venue.to_json, user_signed_in: !current_user.nil?, is_favourited: Event.favourited?(current_user, event.try(:id))) %>
 
 <% end %>
 

@@ -25,12 +25,16 @@
 					<%= label_tag(:festival_string, "Year:") %>
 					<%= select_tag(:festival_string, raw("<option value="" selected>all</option><option>fringe</option><option selected>demofringe</option><option>jazz</option><option>book</option><option>international</option><option>tattoo</option><option>art</option><option>hogmanay</option><option>science</option><option>imaginate</option><option>film</option><option>mela</option><option>storytelling</option>"), class: "form-control") %>
 				</div>
-				<div class="col-sm-5">
-					<br>
-					<%= submit_tag("Search", class: "btn btn-primary") %>
-				</div>
 			</div>
-			<% end %>
 		</div>
+		<br>
+		<div class="row">
+			<div class="col-sm-6">
+				<%= submit_tag("Search", class: "btn btn-primary") %>
+			</div>
+		</div>
+		<% end %>
+
 	</div>
+
 </div>

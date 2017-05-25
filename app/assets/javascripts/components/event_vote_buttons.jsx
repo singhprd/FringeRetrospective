@@ -1,5 +1,3 @@
-import React from 'react';
-
 var EventVoteButtons = React.createClass({
 
     componentDidMount: function() {
@@ -16,7 +14,7 @@ var EventVoteButtons = React.createClass({
             type: "GET",
             data: {event_id: "1"},
             success: function(a, b, c) {
-                var votes = a["votes"];
+                votes = a["votes"];
                 this.setState({ score: a["votes"] });
                 $("#notice").html(a["notice"]);
             }.bind(this),
@@ -34,7 +32,7 @@ var EventVoteButtons = React.createClass({
             data: { event_id: this.props.event_id, value: 1 },
             success: function(a, b, c) {
                 // console.log("a", a, "b",b, "c", c)
-                var votes = a["votes"];
+                votes = a["votes"];
                 if (votes) {
                     this.setState({ score: a["votes"] });
                 }
@@ -55,7 +53,7 @@ var EventVoteButtons = React.createClass({
             data: { event_id: this.props.event_id, value: -1 },
             success: function(a, b, c) {
                 // console.log("a", a, "b",b, "c", c)
-                var votes = a["votes"];
+                votes = a["votes"];
                 if (votes) {
                     this.setState({ score: a["votes"] });
                 }
@@ -84,6 +82,3 @@ var EventVoteButtons = React.createClass({
             );
     }
 });
-
-
-module.exports = EventVoteButtons;
