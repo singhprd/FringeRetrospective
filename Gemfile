@@ -14,7 +14,7 @@ gem "uglifier", ">= 1.3.0"
 # Use CoffeeScript for .coffee assets and views
 gem "coffee-rails", "~> 4.2"
 # See https://github.com/rails/execjs#readme for more supported runtimes
-gem 'therubyracer', platforms: :ruby
+# gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem "jquery-rails"
@@ -39,7 +39,7 @@ gem "kaminari"
 gem "pg"
 gem "react-rails"
 gem "react-rails-hot-loader"
-# gem "therubyracer"
+gem "therubyracer"
 gem "twitter-bootstrap-rails"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "bootstrap_form"
@@ -48,9 +48,6 @@ gem 'festivals_lab', :git => 'https://github.com/singhprd/festivals_lab', :branc
 gem "font-awesome-rails"
 # gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 # gem 'sqlite3'
-gem "react_on_rails", "~> 7"
-# gem 'mini_racer', platforms: :ruby
-# gem 'libv8', "~> 5.0"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -75,4 +72,3 @@ group :development do
   gem "spring"
   gem "spring-watcher-listen"
 end
-

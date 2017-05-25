@@ -2,14 +2,6 @@
 
 <% @events.each do |event| %>
 
-<%= react_component('EventCard',
-	props: {
-		event: event.to_json,
-		venue: event.venue.to_json,
-		user_signed_in: !current_user.nil?
-	})
-%>
+<%= react_component('EventCard', event: event.to_json, venue: event.venue.to_json, user_signed_in: !current_user.nil?) %>
 
 <% end %>
-
-
