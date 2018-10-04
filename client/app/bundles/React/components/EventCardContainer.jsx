@@ -4,7 +4,7 @@ import EventCard from './EventCard.jsx';
 
 export class EventCardContainer extends Component {
   static propTypes = {
-    eventIds: PropTypes.array,
+    eventJson: PropTypes.array,
     currentUserId: PropTypes.number
   };
   eventCards(){

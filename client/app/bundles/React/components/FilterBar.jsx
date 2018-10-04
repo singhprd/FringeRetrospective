@@ -3,16 +3,10 @@ import React, { Component } from 'react';
 
 export class FilterBar extends Component {
     static propTypes = {
-      current_filter: PropTypes.object,
-      // userSignedIn: PropTypes.bool.isRequired,
-      // is_favourited: PropTypes.bool.isRequired,
+      current_filter: PropTypes.object
     };
     constructor(props) {
       super(props);
-      // this.state = {
-      //   event: $.parseJSON(this.props.event),
-      //   isFavourited: this.props.is_favourited,
-      // };
     }
     params() {
       var filter = this.props.current_filter;
@@ -27,8 +21,6 @@ export class FilterBar extends Component {
       params[param] = value;
       Turbolinks.clearCache();
       Turbolinks.visit('/?' + $.param(params), {'action':'replace'});
-
-      // window.location = '/?' + $.param(params);
     }
     isActive(param, value) {
       var params = this.params();
@@ -37,6 +29,9 @@ export class FilterBar extends Component {
       if (params[param].toString() == value) {
         return 'active';
       }
+    }
+    redirect_to_search() {
+      Turbolinks.visit('/searches/new', {'action':'replace'});
     }
     render() {
       return (
@@ -51,6 +46,9 @@ export class FilterBar extends Component {
             <button onClick={() => this.redirect('year', '2016')} className={'btn btn-primary navbar-btn btn-sm ' + (this.isActive('year', '2016'))}>2016</button>
             <button onClick={() => this.redirect('year', '2017')} className={'btn btn-primary navbar-btn btn-sm ' + (this.isActive('year', '2017'))}>2017</button>
             <button onClick={() => this.redirect('year', '2018')} className={'btn btn-primary navbar-btn btn-sm ' + (this.isActive('year', '2018'))}>2018</button>
+          </div>
+          <div className="btn-group">
+            <button onClick={() => this.redirect_to_search() } className={'btn btn-primary navbar-btn btn-sm'}>Search</button>
           </div>
         </div>
       );

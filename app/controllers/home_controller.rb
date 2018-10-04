@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   # TODO: Add Scopes
 
   # GET /
-  def welcome
+  def index
     params[:favourites] ||= "false"
     params[:year] ||= Fringebot::YEARS.last
 

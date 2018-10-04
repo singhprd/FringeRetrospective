@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get 'search' => 'search#index' 
   get 'search/results' => 'search#do_search' 
 
-  root 'home#welcome'
+  root 'home#index'
 
   get '/events/:id/comments' => 'events#comments'
   get '/events/:id/is_favourited' => 'events#is_favourited'
