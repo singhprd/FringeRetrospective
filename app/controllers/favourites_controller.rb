@@ -40,7 +40,10 @@ class FavouritesController < ApplicationController
   def update
     respond_to do |format|
       if @favourite.update(favourite_params)
-        format.html { redirect_to @favourite, notice: "Favourite was successfully updated." }
+        # FIXME: Possible unprotected redirect
+        format.html do
+          redirect_to @favourite, notice: "Favourite was successfully updated."
+        end
         format.json { render :show, status: :ok, location: @favourite }
       else
         format.html { render :edit }
