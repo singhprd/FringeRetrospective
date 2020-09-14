@@ -17,7 +17,9 @@ class Search < ApplicationRecord
   end
 
   def retrieve_params()
+
     params_hash = Hash.new
+
     params_hash["festival_string"] = self.festival_string
     params_hash["title_string"] = self.title_string
     params_hash["artist"] = self.artist
