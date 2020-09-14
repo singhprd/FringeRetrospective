@@ -1,34 +1,39 @@
 <div id="search-panel" class="panel panel-primary home_card text-info">
-	<div class="panel-heading">
-		<h3 class="panel-title">
-			Search 
-		</h3>
-	</div>
-	<div class="panel-body">
-		<div class="row">
-			<%= form_tag("/searches", method: "post") do %>
-			<div class="form-group">
-				<div class="col-sm-6">
-					<%= label_tag(:title_string, "Title:") %>
-					<%= text_field_tag(:title_string, @search_params["title_string"], class: 'form-control') %>	
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      Search
+    </h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <%= form_tag("/searches", method: "post", remote: true) do %>
+      <div class="form-group">
+        <div class="col-sm-6">
+          <%= label_tag(:title_string, "Title:") %>
+          <%= text_field_tag(:title_string, @search_params["title_string"], class: 'form-control') %>
+          <%= label_tag(:artist, "Artist:") %>
+          <%= text_field_tag(:artist, @search_params["artist"], class: 'form-control') %>
+        </div>
 
-					<%= label_tag(:artist, "Artist:") %>
-					<%= text_field_tag(:artist, @search_params["artist"], class: 'form-control') %>
-				</div>
-
-				<div class="col-sm-5">
-					<%= label_tag(:year, "Year:") %>
-					<%= select_tag "year", options_for_select(["2015", "2016", "2017"], @search_params["year"]), class: "form-control" %>
-
-					<%= label_tag(:festival_string, "Festival:") %>
-					<%= select_tag "festival_string", options_for_select(Fringebot.festival_options_for_select, @search_params["festival_string"]), class: "form-control" %>
-				</div>
-				<div class="col-sm-5">
-					<br>
-					<%= submit_tag("Search", class: "btn btn-primary") %>
-				</div>
-			</div>
-			<% end %>
-		</div>
-	</div>
+        <div class="col-sm-5">
+          <%= label_tag(:year, "Year:") %>
+          <%= select_tag "year", options_for_select(Fringebot::YEARS, @search_params["year"]), class: "form-control" %>
+          <%= label_tag(:festival_string, "Festival:") %>
+          <%= select_tag "festival_string", options_for_select(Fringebot.festival_options_for_select, @search_params["festival_string"]), class: "form-control" %>
+        </div>
+        <div class="col-sm-5">
+          <br>
+          <%= button_tag(
+            "Search",
+            type: "submit",
+            class: "btn btn-primary",
+              data: {
+                disable_with: "<i class='fa fa-circle-o-notch fa-spin fa-fw'></i>"
+            })
+          %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
 </div>

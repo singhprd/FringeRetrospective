@@ -1,7 +1,9 @@
+<%= react_component("FilterBar", trace: nil, props: {userSignedIn: !current_user.nil?, current_filter: {year: @event.festival_year, favourites: Event.favourited?(current_user, @event.id) }}, prerender: false) %>
+
 <%= react_component('EventCardContainer', trace: nil,
     props: {
       eventJson: [@event.card_json(current_user)],
-      userSignedIn: !current_user.nil?
+      currentUserId: current_user&.id
     })
 %>
 

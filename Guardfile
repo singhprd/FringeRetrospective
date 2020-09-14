@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
@@ -15,7 +17,7 @@
 #
 # and, you'll have to watch "config/Guardfile" instead of "Guardfile"
 
-guard 'livereload' do
+guard "livereload" do
   extensions = {
     css: :css,
     scss: :css,
@@ -30,7 +32,7 @@ guard 'livereload' do
     # less: :less, # uncomment if you want LESS stylesheets done in browser
   }
 
-  rails_view_exts = %w(erb haml slim)
+  rails_view_exts = %w[erb haml slim]
 
   # file types LiveReload may optimize refresh for
   compiled_exts = extensions.values.uniq
@@ -54,11 +56,11 @@ guard 'livereload' do
   watch(%r{config/locales/.+\.yml})
 end
 
-guard :minitest, spring: "spring rake test", autorun: true  do
+guard :minitest, spring: "spring rake test", autorun: true do
   # with Minitest::Unit
   watch(%r{^test/(.*)\/?test_(.*)\.rb$})
   watch(%r{^lib/(.*/)?([^/]+)\.rb$})     { |m| "test/#{m[1]}test_#{m[2]}.rb" }
-  watch(%r{^test/test_helper\.rb$})      { 'test' }
+  watch(%r{^test/test_helper\.rb$})      { "test" }
 
   # with Minitest::Spec
   # watch(%r{^spec/(.*)_spec\.rb$})
@@ -78,13 +80,12 @@ guard :minitest, spring: "spring rake test", autorun: true  do
   # watch(%r{^app/controllers/(.*)\.rb$}) { |m| "test/functional/#{m[1]}_test.rb" }
   # watch(%r{^app/helpers/(.*)\.rb$})     { |m| "test/helpers/#{m[1]}_test.rb" }
   # watch(%r{^app/models/(.*)\.rb$})      { |m| "test/unit/#{m[1]}_test.rb" }
-  
+
   watch(%r{^app/(.+)\.rb$})                               { |m| "test/#{m[1]}_test.rb" }
-  watch(%r{^app/controllers/application_controller\.rb$}) { 'test/controllers' }
+  watch(%r{^app/controllers/application_controller\.rb$}) { "test/controllers" }
   watch(%r{^app/controllers/(.+)_controller\.rb$})        { |m| "test/integration/#{m[1]}_test.rb" }
   watch(%r{^app/views/(.+)_mailer/.+})                    { |m| "test/mailers/#{m[1]}_mailer_test.rb" }
   watch(%r{^lib/(.+)\.rb$})                               { |m| "test/lib/#{m[1]}_test.rb" }
   watch(%r{^test/.+_test\.rb$})
-  watch(%r{^test/test_helper\.rb$}) { 'test' }
-
+  watch(%r{^test/test_helper\.rb$}) { "test" }
 end

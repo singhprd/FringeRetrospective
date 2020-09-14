@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FavouritesController < ApplicationController
   before_action :set_favourite, only: %i[show edit update destroy]
 

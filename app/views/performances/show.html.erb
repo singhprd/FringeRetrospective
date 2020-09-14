@@ -1,24 +1,20 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Concession:</strong>
-  <%= @performance.concession %>
-</p>
-
-<p>
-  <strong>End:</strong>
-  <%= @performance.end %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @performance.price %>
-</p>
-
-<p>
-  <strong>Start:</strong>
-  <%= @performance.start %>
-</p>
-
-<%= link_to 'Edit', edit_performance_path(@performance) %> |
-<%= link_to 'Back', performances_path %>
+<table class='table table-condensed'>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <% @event.performances.each do |performance| %>
+      <tr>
+        <td><%= fringe_time_date(performance) %></td>
+        <td><%= fringe_start_time(performance) %></td>
+        <td><%= fringe_end_time(performance) %></td>
+      </tr>
+      <% end %>
+    </tr>
+  </tbody>
+</table>

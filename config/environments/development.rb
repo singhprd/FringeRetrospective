@@ -1,4 +1,9 @@
+# frozen_string_literal: true
+
 # Rails.application.configure do
+# Verifies that versions and hashed value of the package contents in the project's package.json
+# config.webpacker.check_yarn_integrity = true
+
 #   # Settings specified here will take precedence over those in config/application.rb.
 
 #   # In the development environment your application's code is reloaded on
@@ -55,8 +60,10 @@
 
 # --------------------
 
-
 Rails.application.configure do
+  # Verifies that versions and hashed value of the package contents in the project's package.json
+  config.webpacker.check_yarn_integrity = true
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -71,12 +78,12 @@ Rails.application.configure do
   config.consider_all_requests_local = true
 
   # Enable/disable caching. By default caching is disabled.
-  if Rails.root.join('tmp/caching-dev.txt').exist?
+  if Rails.root.join("tmp/caching-dev.txt").exist?
     config.action_controller.perform_caching = true
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => 'public, max-age=172800'
+      "Cache-Control" => "public, max-age=172800",
     }
   else
     config.action_controller.perform_caching = false
@@ -111,12 +118,16 @@ Rails.application.configure do
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # Because Devise
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
+  config.action_controller.asset_host = 'http://localhost:3000' #Or your domain
+  config.action_mailer.asset_host = config.action_controller.asset_host
+
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
 
   # Add Rack::LiveReload to the bottom of the middleware stack with the default options:
-  config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
+  # config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
 
   # config.reload_classes_only_on_change = false
   config.log_level = :info
 end
-

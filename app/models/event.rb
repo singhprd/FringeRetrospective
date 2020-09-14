@@ -1,17 +1,38 @@
+# frozen_string_literal: true
+
 class Event < ApplicationRecord
-  has_many :performances, :dependent => :destroy
-  has_many :reviews, :dependent => :destroy
-  has_many :votes, :dependent => :destroy
-  has_many :favourites, :dependent => :destroy
-  has_many :images, :dependent => :destroy
+  has_many :performances, dependent: :destroy
+  has_many :reviews, dependent: :destroy
+  has_many :votes, dependent: :destroy
+  has_many :favourites, dependent: :destroy
+  has_many :images, dependent: :destroy
   belongs_to :venue
   validates :code, presence: true, uniqueness: true
   validates :festival_year, presence: true
   has_and_belongs_to_many :searches
   has_many :list_items
-  has_many :lists, :through => :list_items
+  has_many :lists, through: :list_items
+  has_many :comments
 
   attr_accessor :user
+
+  REVIEW_SOURCES = [
+    "broadwaybaby.com/shows",
+    "edinburghfestival.list.co.uk",
+    "theskinny.co.uk",
+    "chortle.co.uk/review",
+    "scotsman.com/lifestyle/culture/edinburgh-festivals/reviews",
+  ].freeze
+
+  def get_reviews
+    # return [] unless festival_id == "fringe"
+    # reviews = []
+    # REVIEW_SOURCES.each do |source|
+    #   reviews << Review.new().get_or_build_review(source, self.id)
+    # end
+    # reviews.select { |review| review.has_data? }
+    []
+  end
 
   def upvotes
     votes.where(value: 1).count
@@ -22,29 +43,38 @@ class Event < ApplicationRecord
   end
 
   def tally_votes
-    return 0 if !self.persisted?
+    return 0 unless persisted?
+
     self.score = upvotes - downvotes
     save
-    return self.reload.score
+    reload.score
   end
 
   def card_json(current_user)
     @user = current_user
-    return self.to_json(include: :venue, methods: :favourited)
+    to_json(
+      include: :venue,
+      methods: %i[favourited image_urls get_reviews],
+    )
+  end
+
+  def comments_json(current_user)
+    comments.as_json(current_user)
   end
 
   def favourited
     return false if @user.nil?
 
-    self.favourites.exists?(
-      user_id: @user.id, event_id: self.id
+    favourites.exists?(
+      user_id: @user.id, event_id: id,
     )
   end
 
   def self.favourited?(user, event_id)
     return false if user.nil? || event_id.nil?
+
     Event.find(event_id).favourites.exists?(
-      user_id: user.id, event_id: event_id
+      user_id: user.id, event_id: event_id,
     )
   end
 
@@ -58,7 +88,7 @@ class Event < ApplicationRecord
       festival: festival,
       year: festival_year,
       artist: artist,
-      code: code
+      code: code,
     }
   end
 
@@ -77,6 +107,7 @@ class Event < ApplicationRecord
   def check_for_updates
     # TODO: ADD CHECK TO RETURN IF CHECKED IN LAST X HOURS
     return if last_checked_for_update&.to_datetime.to_i > 1.hour.ago.to_i
+
     update_attributes(last_checked_for_update: DateTime.now)
     # return if self.last_checked_for_update
     fringebot = Fringebot.new("uuid" => uuid)

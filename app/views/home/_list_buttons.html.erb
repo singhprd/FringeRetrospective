@@ -1,0 +1,28 @@
+<% if current_user.nil? %>
+  <div class="btn-group pull-right" >
+      <button type="button" class="btn btn-default disabled">Add to list <span class="caret"></span></button>
+  </div>
+<% else %>
+  <div class="btn-group pull-right" >
+    <button data-target="list.addToListButton" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Add to list
+      <span class="caret"></span>
+      <span class="sr-only">Toggle Dropdown</span>
+    </button>
+    <ul class="dropdown-menu" style="min-width: 300px;">
+      <% current_user.lists.for_year(@event.festival_year).each do |list| %>
+        <li>
+          <% unless list.list_items.map(&:event_id).include?(@event.id) %>
+            <a style="cursor: pointer" data-event-id="<%= @event.id %>" data-list-id="<%= list.id %>" data-action="list#click"><%= list.name %> </a>
+          <% else %>
+            <li data-action="click->list#stopClose">
+              <a><%= list.name %> <i style="cursor: pointer" data-list-item-id="<%= list.list_items.select{|li| li.event_id == @event.id}.last.id %>" data-action="click->list#delete" class="glyphicon glyphicon-remove pull-right"></i> </a>
+            </li>
+          <% end %>
+        </li>
+      <% end %>
+      <!-- <li role="separator" class="divider"></li> -->
+      <!-- <li><a href="#">Separated link</a></li> -->
+    </ul>
+  </div>
+<% end %>

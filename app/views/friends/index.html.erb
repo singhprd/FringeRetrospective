@@ -1,0 +1,36 @@
+<div class="row" data-controller="friend-requests">
+  <div class="col-md-7">
+    <h1>Friends</h1>
+    <table class="table table-striped">
+      <% @user.friends.each do |friend| %>
+      <tr>
+        <td><%= friend.email %><a style="cursor: pointer" class="pull-right" data-confirm="Are you sure?" data-friend-id="<%= friend.id %>" data-action="friend-requests#unfriend">Unfriend</a></td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+
+  <div class="col-md-5">
+    <table class="table table-striped">
+      <thead>
+        <td><h3>Pending Requests</h3></td>
+      </thead>
+      <% if @user.pending_friend_requests.empty? && @user.sent_friend_requests.empty? %>
+        <tr>
+          <td>Go add some pals, eh?</td>
+        </tr>
+      <% end %>
+      <% @user.pending_friend_requests.each do |request| %>
+        <tr>
+          <td><%= request.sender.email %> <a style="cursor: pointer" data-action="friend-requests#acceptRequest" data-request-id="<%= request.id %>" class="pull-right">Accept</a><span class="pull-right">&nbsp;|&nbsp;</span><span style="cursor: pointer" data-action="click->friend-requests#deleteRequest" data-request-id="<%= request.id %>" class="pull-right">Delete</span></td>
+        </tr>
+      <% end %>
+      <% @user.sent_friend_requests.each do |request| %>
+        <tr>
+          <td><%= request.recipient.email %> <span style="cursor: pointer" data-action="click->friend-requests#deleteRequest" data-request-id="<%= request.id %>" class="pull-right">Delete</span></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= render :partial => "friend_request/new" %>
+  </div>
+</div>

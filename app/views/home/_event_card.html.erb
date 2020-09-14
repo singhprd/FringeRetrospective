@@ -1,0 +1,9 @@
+<% @event = event %>
+<div class="panel panel-primary home_card text-info">
+  <div class='panel-heading'>
+    <h3 class="panel-title">
+      <a><%= event.title %></a>
+    </h3>
+  </div>
+  <%= render :partial => "home/event_container" %>
+</div>

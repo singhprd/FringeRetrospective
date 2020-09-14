@@ -1,14 +1,16 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class EventsControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @event = Fabricate(:event)
-    # @new_event = Fabricate(:event)
-    @user = Fabricate(:user)
-    @admin_user = Fabricate(:user)
-    @admin_user.update_attributes(admin: true)
-    sign_in @admin_user
-  end
+  # setup do
+  #   @event = Fabricate(:event)
+  #   # @new_event = Fabricate(:event)
+  #   @user = Fabricate(:user)
+  #   @admin_user = Fabricate(:user)
+  #   @admin_user.update_attributes(admin: true)
+  #   sign_in @admin_user
+  # end
 
   # test "should get is_favourited?" do
   #   get events_url

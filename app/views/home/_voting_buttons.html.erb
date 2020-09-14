@@ -1,0 +1,23 @@
+<div
+  class="btn-group"
+  data-controller="event-voting"
+  data-event-id="<%= @event.id %>"
+  data-target="eventVoting">
+  <button
+    class="btn btn-default"
+    data-action="event-voting#upvote">
+  👍
+  </button>
+
+  <button
+    class="btn btn-default disabled"
+    data-target="event-voting.eventVoteCount">
+  <%= @event.tally_votes %>
+  </button>
+
+  <button
+    class="btn btn-default"
+    data-action="event-voting#downvote">
+  👎
+  </button>
+</div>

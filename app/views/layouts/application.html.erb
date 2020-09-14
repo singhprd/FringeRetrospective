@@ -9,6 +9,7 @@
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application' %>
 
   <!-- For the Physical Web -->
     <meta charset="UTF-8">
@@ -28,8 +29,20 @@
 
 <link rel="manifest" href="/manifest.json" />
 <meta name="apple-mobile-web-app-capable" content="yes"></head>
+<link rel="apple-touch-icon" href= <%= image_path("cutout.png") %> >
+
 <body>
-  <%= render "./layouts/bootstrap_nav_bar" %>
+  <% unless @no_header %>
+    <%= render "./layouts/bootstrap_nav_bar" %>
+  <% end %>
+
+  <div id="flash-container">
+    <div id="flash">
+      <span id="notice" ><%= notice %></span>
+      <span id="alert"><%= alert %></span>
+    </div>
+  </div>
+
   <div class="container" id="layout-base">
     <%= yield %>
   </div>

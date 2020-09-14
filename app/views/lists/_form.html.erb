@@ -16,6 +16,11 @@
     <%= form.text_field :name, id: :name, :class => 'form-control', :type => 'text' %>
   </div>
 
+  <div class="field">
+    <%= form.label :year %>
+    <%= form.select(:year, options_for_select(Fringebot::YEARS.reverse, Fringebot::YEARS.last), { include_blank: false }, :class => 'form-control') %>
+  </div>
+
   <div class="actions">
     <%= form.submit 'Submit', :class => 'btn btn-default' %>
 

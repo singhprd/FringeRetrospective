@@ -1,9 +1,11 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class VotesControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @vote = votes(:one)
-  end
+  # setup do
+  #   @vote = votes(:one)
+  # end
 
   # test "should get index" do
   #   get votes_url

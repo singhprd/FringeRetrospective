@@ -1,9 +1,11 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class VenuesControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @venue = venues(:one)
-  end
+  # setup do
+  #   @venue = venues(:one)
+  # end
 
   # test "should get index" do
   #   get venues_url

@@ -2,19 +2,22 @@
 
 <div class="row">
   <div class="col-xs-12 col-md-6">
-    <ul class="list-group">
-      <% @lists.map do |list| %>
-      <a href="/lists/<%= list.id %>"> 
-        <li class="list-group-item panel-title"><%= list.name %></li>
-      </a>
-      <% end %>
-    </ul>
 
+    <% Fringebot::YEARS.reverse.each do |year| %>
+      <h3><%= year %></h3>
+      <ul class="list-group">
+        <% @lists.for_year(year).map do |list| %>
+        <a href="/lists/<%= list.id %>">
+          <li class="list-group-item panel-title"><%= list.name %></li>
+        </a>
+        <% end %>
+      </ul>
+    <% end %>
+    <%= link_to 'New List', new_list_path, :class => 'btn btn btn-primary' %>
 
   </div>
   <div class="col-xs-6 col-md-4"></div>
 </div>
 <br>
-<%= link_to 'New List', new_list_path %>
 
 

@@ -1,7 +1,9 @@
-class ImageVersion < ApplicationRecord
-	belongs_to :image
+# frozen_string_literal: true
 
-	def remote_url
-		"https:" + self.url
-	end
+class ImageVersion < ApplicationRecord
+  belongs_to :image
+
+  def remote_url
+    "https:" + url
+  end
 end

@@ -1,20 +1,9 @@
-<%= react_component('EventCardContainer', trace: nil,
-    props: {
-      eventJson: @events.map{|event| event.card_json(current_user)},
-      userSignedIn: !current_user.nil?
-    })
-%>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiKvrb_NLftxFX2UHIfXlPY0vhh4baQrw"></script>
+
+<% @events.each do |event| %>
+  <%= render :partial => "event_card", locals: { event: event } %>
+<% end %>
 
 <%= paginate @events -%>
 
-<div class="container">
-  <div class="row">
-    <div id="image-div" class="col-xs-8 col-md-10" >
-			<%= image_tag("cutout.png", :id => "footer-image") %>
-
-    </div>
-    <div class="col-xs-4 col-md-2" >
-    	<span id="disclaimer-text">			<span> 👉 data provided courtesy of the </span><a href="https://api.edinburghfestivalcity.com/"> Edinburgh Festivals Listings API</a>. This website is not an official festival application.</span>
-    </div>
-  </div>
-</div>
+<%= render :partial => "shared/footer" %>

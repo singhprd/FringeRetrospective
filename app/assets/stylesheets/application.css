@@ -16,10 +16,12 @@
 
  @import 'https://fonts.googleapis.com/css?family=Roboto+Condensed|Rubik+Mono+One';
 
- /**= require font-awesome*/
- /**= require rails_bootstrap_forms*/
- /**= require bootstrap_and_overrides*/
- /**= require react-select*/
+/*
+ *= require rails_bootstrap_forms
+ *= require bootstrap_and_overrides
+ */
+
+ @import "font-awesome.css";
 
  * {
  	/*font-family: 'Roboto Condensed', sans-serif;*/
@@ -62,7 +64,7 @@
 	border-radius: 4px;
 }
 
-#bs-example-navbar-collapse-1 #dropdown-menu {	
+#bs-example-navbar-collapse-1 #dropdown-menu {
 	background-color: white;
 	color: black;
 }
@@ -98,7 +100,7 @@
   overflow: hidden;
   display: inline-block;
   vertical-align: bottom;
-  -webkit-animation: ellipsis steps(4,end) 900ms infinite;      
+  -webkit-animation: ellipsis steps(4,end) 900ms infinite;
   animation: ellipsis steps(4,end) 900ms infinite;
   content: "\2026"; /* ascii code for the ellipsis character */
   width: 0px;
@@ -106,13 +108,13 @@
 
 @keyframes ellipsis {
   to {
-    width: 1.25em;    
+    width: 1.25em;
   }
 }
 
 @-webkit-keyframes ellipsis {
   to {
-    width: 1.25em;    
+    width: 1.25em;
   }
 }
 
@@ -174,10 +176,20 @@
   margin: 10px;
 }
 
+#comment-card {
+  padding: 4px;
+  padding-left: 10px;
+  width: 100%;
+}
+
 @media (max-width: 768px) {
   .home_card {
     margin-left: -25px;
     margin-right: -25px;
+  }
+  #well-content-box {
+    margin-left: -20px;
+    margin-right: -20px;
   }
   #footer-image {
     height: 100%;
@@ -200,4 +212,76 @@
 a {
     color: inherit;
     text-decoration: none;
+}
+
+.event-list-item {
+}
+
+.comment-panel {
+  padding: 3px;
+  padding-bottom: 5px;
+  padding-top: 6px;
+}
+
+.comment-vote-button {
+  padding: 0px;
+  outline:none;
+  background-color: transparent;
+}
+
+
+/*Remove ALL button highlighting when clicked*/
+a, a:active, a:focus,
+button, button:focus, button:active,
+.btn, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn.focus:active, .btn.active.focus {
+    outline: none;
+    outline: 0;
+}
+
+input::-moz-focus-inner {
+    border: 0;
+}
+
+#flash-container {
+  position: relative;
+  height: 25px;
+  /*position: relative;
+  background-color: red;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-name: flash-animation-container;*/
+}
+
+@keyframes flash-animation-container {
+    0% {height: 0px;}
+    40% {height: 30px;}
+    100% {height: 30px;}
+}
+
+#flash {
+    position: fixed;
+    z-index: 1001;
+    top: 50px;
+    left: 0;
+    right: 0;
+    background: #fde073;
+    text-align: center;
+    line-height: 2.5;
+    overflow: hidden;
+    -webkit-box-shadow: 0 0 5px black;
+    -moz-box-shadow:    0 0 5px black;
+    box-shadow:         0 0 5px black;
+    animation-name: flash-animation;
+    /*animation-timing-function: ease-out;*/
+    animation-duration: 2.5s;
+    animation-iteration-count: 1;
+}
+
+@keyframes flash-animation {
+    0% {-webkit-transform: translateY(-50px);}
+    100% {-webkit-transform: translateY(0px);}
+}
+
+#dummy-nav-bar-for-blocking {
+  height: 30px;
 }

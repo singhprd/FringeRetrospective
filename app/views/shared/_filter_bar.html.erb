@@ -1,0 +1,32 @@
+<div class="btn-toolbar">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="btn-group">
+        <% Fringebot::YEARS.each do |year| %>
+          <%= link_to(year,
+                { action: "events", controller: "home", year: year },
+                { class: navbar_button_class(year) }
+              )
+          %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <%= form_tag(
+            { action: "events", controller: "home", year: current_year_from_url },
+            {method: :get}) do %>
+        <div class="input-group">
+          <%= text_field_tag(:term, "", 
+                { id: "searchInput",
+                  style:'height: 30px;',
+                  class:"form-control navbar-btn btn-sm"
+                }) %>
+          <div class="input-group-btn">
+            <%= submit_tag 'Search', {id: "searchInput", class: "btn btn-default navbar-btn btn-sm", style: 'height: 30px;'} %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

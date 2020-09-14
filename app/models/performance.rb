@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Performance < ApplicationRecord
-	belongs_to :event
+  belongs_to :event
 end

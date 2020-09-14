@@ -1,2 +1,2 @@
-Hosted at: http://www.fringeretrospective.com/
+Hosted at: http://www.edinfringe.co.uk
 

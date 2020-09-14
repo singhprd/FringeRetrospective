@@ -25,18 +25,20 @@
 #   database: db/production.sqlite3
 
 
+host: localhost
+
 development:
   adapter: postgresql
   encoding: unicode
   database: fringe_app_development
   pool: 5
-  username: myapp
-  password: thepassword
+  username: peter
+  # password: password
 
 test:
   adapter: postgresql
   encoding: unicode
   database: fringe_app_test
   pool: 5
-  username: myapp
-  password: thepassword
+  username: peter
+  # password: password
