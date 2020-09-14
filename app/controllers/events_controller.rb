@@ -63,8 +63,10 @@ class EventsController < ApplicationController
     # venue_params = JSON.parse(event_params[:venue])
     # venue_params = eval params[:venue]
 
-    if params[:existing_venue_code].nil?
-      venue_params = eval params[:venue]
+    if params[:existing_venue_code].nil? 
+      # FIXME: Security thing
+      venue_params = eval(params[:venue])
+
       @venue = Venue.new(venue_params)
       @venue.save
     else

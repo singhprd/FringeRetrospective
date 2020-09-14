@@ -18,13 +18,16 @@ class Search < ApplicationRecord
     self.year = params_hash["year"]
   end
 
-  def retrieve_params
-    params_hash = {}
-    params_hash["festival_string"] = festival_string
-    params_hash["title_string"] = title_string
-    params_hash["artist"] = artist
-    params_hash["year"] = year
-    params_hash
+  def retrieve_params()
+
+    params_hash = Hash.new
+
+    params_hash["festival_string"] = self.festival_string
+    params_hash["title_string"] = self.title_string
+    params_hash["artist"] = self.artist
+    params_hash["year"] = self.year
+    return params_hash
+
   end
 
   def already_searched_recently
