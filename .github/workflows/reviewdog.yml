@@ -3,7 +3,7 @@ on: [pull_request]
 jobs:
   brakeman:
     name: runner / brakeman
-    runs-on: default-action-runner
+    runs-on: Default
     steps:
       - name: Check out code
         uses: actions/checkout@v1
