@@ -3,7 +3,7 @@ on: [pull_request]
 jobs:
   brakeman:
     name: runner / brakeman
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-action-runner
     steps:
       - name: Check out code
         uses: actions/checkout@v1
