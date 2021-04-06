@@ -1,0 +1,11 @@
+name: Hello GitHub Actions
+
+on: [push]
+
+jobs:
+  hello:
+    runs-on: lightbulb
+
+    steps:
+    - name: Hello, World in GitHub Actions
+      run: echo 'Hello, World'
