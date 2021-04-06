@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   hello:
-    runs-on: ubuntu
+    runs-on: lightbulb
 
     steps:
     - name: Hello, World in GitHub Actions
