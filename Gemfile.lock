@@ -171,6 +171,7 @@ GEM
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     io-like (0.3.0)
+    ipaddr (1.2.2)
     jaro_winkler (1.5.2)
     jbuilder (2.8.0)
       activesupport (>= 4.2.0)
@@ -256,6 +257,7 @@ GEM
       oauth2 (~> 1.1)
       omniauth (~> 1.9)
     openssl (2.1.2)
+      ipaddr
     orm_adapter (0.5.0)
     os (1.0.1)
     parallel (1.17.0)
@@ -275,7 +277,8 @@ GEM
       method_source (~> 0.9.0)
     psych (3.1.0)
     public_suffix (3.0.3)
-    puma (3.12.1)
+    puma (4.3.9)
+      nio4r (~> 2.0)
     rack (2.0.7)
     rack-proxy (0.6.5)
       rack
@@ -458,7 +461,7 @@ DEPENDENCIES
   pg
   premailer-rails
   pry
-  puma (~> 3.0)
+  puma (~> 4.3)
   rails (~> 5.1.2)
   rubocop (~> 0.65.0)
   ruby-readability
