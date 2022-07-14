@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "festivals_lab"
+# require "festivals_lab"
 # api.events # The first page of events (using the API's default of 25 per page)
 
 # puts api.events(festival: 'book', size: 50, from: 100)
@@ -101,6 +101,7 @@ class Fringebot
     performances = []
 
     perf_params.each do |perf_param|
+      perf_param.delete 'type'
       performance = Performance.create(perf_param)
       performance.update_attributes(event_id: event.id)
       performances << performance

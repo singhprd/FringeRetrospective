@@ -67,7 +67,6 @@ ActiveRecord::Schema.define(version: 20190724202627) do
     t.integer "venue_id"
     t.string "festival_year"
     t.string "last_checked_for_update"
-    t.datetime "performances_last_updated"
     t.index ["venue_id"], name: "index_events_on_venue_id"
   end
 
@@ -162,16 +161,21 @@ ActiveRecord::Schema.define(version: 20190724202627) do
 
   create_table "performances", id: :serial, force: :cascade do |t|
     t.string "concession"
-    t.string "end_time"
     t.string "price"
-    t.string "start_time"
+    t.string "title"
+    t.string "concession_family"
+    t.string "concession_additional"
+    t.string "type"
+    t.string "duration_minutes"
+    t.boolean "is_at_fixed_time"
+    t.string "price_type"
+    t.string "price_string"
+    t.datetime "end_time"
+    t.datetime "start_time"
     t.integer "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "event_id"
-    t.string "concession_additional"
-    t.string "concession_family"
-    t.string "title"
     t.index ["event_id"], name: "index_performances_on_event_id"
     t.index ["image_id"], name: "index_performances_on_image_id"
   end
