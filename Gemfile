@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 source "https://rubygems.org"
-ruby "2.5.1"
 
-gem "webpacker", "~> 3.5"
+gem "webpacker"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 5.1.2"
+gem "rails", "~> 6.0.1"
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 # Use Puma as the app server
@@ -88,10 +87,10 @@ group :development do
   gem "spring-watcher-listen"
 end
 
-gem "capistrano", "~> 3.7", ">= 3.7.1"
-gem "capistrano-passenger", "~> 0.2.0"
-gem "capistrano-rails", "~> 1.2"
-gem "capistrano-rbenv", "~> 2.1"
+# gem "capistrano", "~> 3.7", ">= 3.7.1"
+# gem "capistrano-passenger", "~> 0.2.0"
+# gem "capistrano-rails", "~> 1.2"
+# gem "capistrano-rbenv", "~> 2.1"
 gem "mailgun-ruby", "~>1.1.6"
 gem "webauthn", "~> 1.13.0"
 gem 'devise_invitable', '~> 2.0.0'
