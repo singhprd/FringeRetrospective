@@ -6,7 +6,7 @@ class CreateEvents < ActiveRecord::Migration[5.0]
       t.string :age_category
       t.string :artist
       t.string :code
-      t.string :description
+      t.text :description
       t.string :festival
       t.string :festival_id
       t.string :genre

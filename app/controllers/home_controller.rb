@@ -68,7 +68,7 @@ class HomeController < ApplicationController
       params[:year] ||= Fringebot::YEARS.last
 
       @filter = params.permit(:favourites, :year, :controller, :action, :term)
-      @search = Search.new(search_params.to_hash, current_user)
+      @search = Search.new(search_params.to_hash)
       @search.update(user: current_user)
       @events = @search.events.page(params[:page]).per(5)
       render "home/welcome.html.erb"

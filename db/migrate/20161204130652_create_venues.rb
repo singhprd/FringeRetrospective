@@ -6,7 +6,7 @@ class CreateVenues < ActiveRecord::Migration[5.0]
       t.string :address
       t.boolean :box_office_fringe
       t.string :box_office_opening
-      t.string :cafe_description
+      t.text :cafe_description
       t.string :code
       t.string :email
       t.string :fax

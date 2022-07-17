@@ -4,7 +4,7 @@ class Search < ApplicationRecord
   has_and_belongs_to_many :events
   belongs_to :user
 
-  def initialize(params_hash, _user)
+  def initialize(params_hash)
     super()
     persist_params(params_hash)
     search_with_fringebot
