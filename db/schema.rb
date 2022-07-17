@@ -2,20 +2,17 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `rails
+# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190724202627) do
+ActiveRecord::Schema.define(version: 2022_07_15_003058) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "comment_votes", force: :cascade do |t|
+  create_table "comment_votes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "comment_id"
     t.integer "vote"
@@ -25,9 +22,9 @@ ActiveRecord::Schema.define(version: 20190724202627) do
     t.index ["user_id"], name: "index_comment_votes_on_user_id"
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "event_id"
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "event_id"
     t.text "text"
     t.integer "in_reply_to"
     t.datetime "created_at", null: false
@@ -36,7 +33,7 @@ ActiveRecord::Schema.define(version: 20190724202627) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "credentials", force: :cascade do |t|
+  create_table "credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "external_id"
     t.string "public_key"
     t.bigint "user_id"
@@ -46,7 +43,7 @@ ActiveRecord::Schema.define(version: 20190724202627) do
     t.index ["user_id"], name: "index_credentials_on_user_id"
   end
 
-  create_table "events", id: :serial, force: :cascade do |t|
+  create_table "events", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "age_category"
     t.string "artist"
     t.string "code"
@@ -70,12 +67,12 @@ ActiveRecord::Schema.define(version: 20190724202627) do
     t.index ["venue_id"], name: "index_events_on_venue_id"
   end
 
-  create_table "events_searches", id: false, force: :cascade do |t|
+  create_table "events_searches", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "search_id", null: false
     t.bigint "event_id", null: false
   end
 
-  create_table "favourites", id: :serial, force: :cascade do |t|
+  create_table "favourites", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "user_id"
     t.integer "event_id"
     t.datetime "created_at", null: false
@@ -85,7 +82,7 @@ ActiveRecord::Schema.define(version: 20190724202627) do
     t.index ["user_id"], name: "index_favourites_on_user_id"
   end
 
-  create_table "friend_requests", force: :cascade do |t|
+  create_table "friend_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "sender_id"
     t.bigint "recipient_id"
     t.datetime "created_at", null: false
@@ -94,7 +91,7 @@ ActiveRecord::Schema.define(version: 20190724202627) do
     t.index ["sender_id"], name: "index_friend_requests_on_sender_id"
   end
 
-  create_table "friendships", force: :cascade do |t|
+  create_table "friendships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "friend_id"
     t.datetime "created_at", null: false
@@ -103,12 +100,12 @@ ActiveRecord::Schema.define(version: 20190724202627) do
     t.index ["user_id"], name: "index_friendships_on_user_id"
   end
 
-  create_table "fringebots", id: :serial, force: :cascade do |t|
+  create_table "fringebots", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "image_versions", id: :serial, force: :cascade do |t|
+  create_table "image_versions", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "description"
     t.string "height"
     t.string "mime"
@@ -121,7 +118,7 @@ ActiveRecord::Schema.define(version: 20190724202627) do
     t.index ["image_id"], name: "index_image_versions_on_image_id"
   end
 
-  create_table "images", id: :serial, force: :cascade do |t|
+  create_table "images", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "image_hash"
     t.string "image_type"
     t.string "orientation"
@@ -131,7 +128,7 @@ ActiveRecord::Schema.define(version: 20190724202627) do
     t.index ["event_id"], name: "index_images_on_event_id"
   end
 
-  create_table "list_items", force: :cascade do |t|
+  create_table "list_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "event_id"
     t.bigint "list_id"
     t.integer "position"
@@ -141,8 +138,8 @@ ActiveRecord::Schema.define(version: 20190724202627) do
     t.index ["list_id"], name: "index_list_items_on_list_id"
   end
 
-  create_table "lists", force: :cascade do |t|
-    t.bigint "user_id"
+  create_table "lists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
@@ -152,14 +149,14 @@ ActiveRecord::Schema.define(version: 20190724202627) do
     t.index ["user_id"], name: "index_lists_on_user_id"
   end
 
-  create_table "lists_users", id: false, force: :cascade do |t|
+  create_table "lists_users", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "list_id", null: false
     t.index ["list_id", "user_id"], name: "index_lists_users_on_list_id_and_user_id"
     t.index ["user_id", "list_id"], name: "index_lists_users_on_user_id_and_list_id"
   end
 
-  create_table "performances", id: :serial, force: :cascade do |t|
+  create_table "performances", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "concession"
     t.string "price"
     t.string "title"
@@ -180,7 +177,7 @@ ActiveRecord::Schema.define(version: 20190724202627) do
     t.index ["image_id"], name: "index_performances_on_image_id"
   end
 
-  create_table "reviews", id: :serial, force: :cascade do |t|
+  create_table "reviews", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "url"
     t.string "title"
     t.datetime "created_at", null: false
@@ -193,18 +190,18 @@ ActiveRecord::Schema.define(version: 20190724202627) do
     t.index ["event_id"], name: "index_reviews_on_event_id"
   end
 
-  create_table "searches", id: :serial, force: :cascade do |t|
+  create_table "searches", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "year", limit: 4
     t.string "festival_string", limit: 25
     t.string "title_string"
     t.string "artist"
-    t.bigint "user_id"
+    t.integer "user_id"
     t.index ["user_id"], name: "index_searches_on_user_id"
   end
 
-  create_table "users", id: :serial, force: :cascade do |t|
+  create_table "users", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -244,7 +241,7 @@ ActiveRecord::Schema.define(version: 20190724202627) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "venues", id: :serial, force: :cascade do |t|
+  create_table "venues", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "address"
     t.boolean "box_office_fringe"
     t.string "box_office_opening"
@@ -270,7 +267,7 @@ ActiveRecord::Schema.define(version: 20190724202627) do
     t.string "disabled_description"
   end
 
-  create_table "votes", id: :serial, force: :cascade do |t|
+  create_table "votes", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "user_id"
     t.integer "event_id"
     t.integer "value"
@@ -280,19 +277,13 @@ ActiveRecord::Schema.define(version: 20190724202627) do
     t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
-  add_foreign_key "comment_votes", "comments"
-  add_foreign_key "comment_votes", "users"
   add_foreign_key "comments", "events"
   add_foreign_key "comments", "users"
   add_foreign_key "events", "venues"
   add_foreign_key "favourites", "events"
   add_foreign_key "favourites", "users"
-  add_foreign_key "friendships", "users"
-  add_foreign_key "friendships", "users", column: "friend_id"
   add_foreign_key "image_versions", "images"
   add_foreign_key "images", "events"
-  add_foreign_key "list_items", "events"
-  add_foreign_key "list_items", "lists"
   add_foreign_key "lists", "users"
   add_foreign_key "performances", "events"
   add_foreign_key "performances", "images"

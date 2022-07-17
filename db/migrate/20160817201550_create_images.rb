@@ -6,7 +6,7 @@ class CreateImages < ActiveRecord::Migration[5.0]
       t.string :hash
       t.string :type
       t.string :orientation
-      t.references :event, foreign_key: true
+      t.references :event, foreign_key: true, type: :int
 
       t.timestamps
     end

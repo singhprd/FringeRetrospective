@@ -3,8 +3,8 @@
 class CreateCommentVotes < ActiveRecord::Migration[5.1]
   def change
     create_table :comment_votes do |t|
-      t.references :user, foreign_key: true
-      t.references :comment, foreign_key: true
+      t.belongs_to :user
+      t.belongs_to :comment
       t.integer :vote
 
       t.timestamps

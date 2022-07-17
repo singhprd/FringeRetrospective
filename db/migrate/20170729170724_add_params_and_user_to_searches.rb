@@ -6,6 +6,6 @@ class AddParamsAndUserToSearches < ActiveRecord::Migration[5.1]
     add_column(:searches, :festival_string, :string, limit: 25)
     add_column(:searches, :title_string, :string)
     add_column(:searches, :artist, :string)
-    add_reference(:searches, :user, foreign_key: true)
+    add_reference(:searches, :user, foreign_key: true, type: :int)
   end
 end

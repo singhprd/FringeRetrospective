@@ -2,6 +2,6 @@
 
 class ChangeEventTableToAddVenueForeignKey < ActiveRecord::Migration[5.0]
   def change
-    add_reference :events, :venue, foreign_key: true
+    add_reference :events, :venue, foreign_key: true, type: :int
   end
 end
