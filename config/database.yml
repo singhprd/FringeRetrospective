@@ -31,6 +31,7 @@ development:
   timeout: 5000
   username: root
   database: fringe_app_development
+  host: db
   # password: password
 
 # # test:
